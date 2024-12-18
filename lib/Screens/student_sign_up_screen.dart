@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reserva_livros/Screens/main_screen.dart';
+import 'package:reserva_livros/database/db_helper.dart';
 import '../components/decoration_form_input.dart';
 
 class StudentSignUpScreen extends StatefulWidget {
@@ -11,6 +12,9 @@ class StudentSignUpScreen extends StatefulWidget {
 
 class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final numberController = TextEditingController();
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                 height: 36,
               ),
               TextFormField(
+                controller: nameController,
                 decoration: getDecorationInput("Nome"),
                 validator: (String? value) {
                   if (value == null) {
@@ -68,6 +73,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                 height: 8,
               ),
               TextFormField(
+                controller: numberController,
                 decoration: getDecorationInput("Matricula"),
                 validator: (String? value) {
                   if (value == null) {
@@ -82,6 +88,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                 height: 8,
               ),
               TextFormField(
+                controller: emailController,
                 decoration: getDecorationInput("Email"),
                 validator: (String? value) {
                   if (value == null) {
@@ -90,7 +97,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                   if (value.length < 5) {
                     return "O email deve haver no minimo 5 caracteres";
                   }
-                  if (value.contains("@")) {
+                  if (!value.contains("@")) {
                     return "O email não é valido";
                   }
                 },
@@ -118,6 +125,9 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   ButtonPressed() {
     if (_formKey.currentState!.validate()) {
       print("Válido");
+      int numberStudent = int.parse(numberController.text);
+      DB.instance.createStudent(
+          nameController.text, numberStudent, emailController.text);
     } else {
       print("Form Inválido");
     }
