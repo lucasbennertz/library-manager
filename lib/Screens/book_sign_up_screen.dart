@@ -13,6 +13,10 @@ class BookSignUpScreen extends StatefulWidget {
 }
 
 class _BookSignUpScreenState extends State<BookSignUpScreen> {
+  final titleController = TextEditingController();
+  final writerCOntroller = TextEditingController();
+  final genderController = TextEditingController();
+  final disponibilityController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   List<GenderModel> generos = [];
   GenderModel? generoSelecionado;
@@ -84,6 +88,7 @@ class _BookSignUpScreenState extends State<BookSignUpScreen> {
               ),
               const SizedBox(height: 18),
               TextFormField(
+                controller: titleController,
                 decoration: getDecorationInput("Titulo"),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -97,6 +102,7 @@ class _BookSignUpScreenState extends State<BookSignUpScreen> {
               ),
               const SizedBox(height: 8),
               TextFormField(
+                controller: writerCOntroller,
                 decoration: getDecorationInput("Autor"),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -173,7 +179,11 @@ class _BookSignUpScreenState extends State<BookSignUpScreen> {
   void ButtonPressed() {
     if (_formKey.currentState!.validate()) {
       print("Formulário válido");
-      print("Gênero selecionado: ${generoSelecionado?.genderName}");
+      DB.instance.createBook(
+          titleController.text,
+          writerCOntroller.text,
+          generoSelecionado?.genderId,
+          disponibilidadeSelecionada?.idDisponibility);
     } else {
       print("Formulário inválido");
     }

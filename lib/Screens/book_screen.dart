@@ -57,10 +57,15 @@ class _BookScreenState extends State<BookScreen> {
       body: Column(
         children: List.generate(livros.length, (index) {
           BookModel livro = livros[index];
-          return ListTile(
-            title: Text("Titulo: ${livro.title}"),
-            subtitle: Text("Autor: ${livro.writer}"),
-          );
+          return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text("Titulo: ${livro.title}"),
+                Text("Autor: ${livro.writer}"),
+                Text(
+                    "Disponibilidade: ${livro.avaliability == 0 ? "Disponível" : "Indisponivel"}"),
+              ]);
         }),
       ),
     );

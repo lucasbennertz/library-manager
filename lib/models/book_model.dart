@@ -4,7 +4,7 @@ class BookModel {
   int? bookId;
   String title;
   String writer;
-  GenderModel gender;
+  int gender;
   int avaliability;
 
   BookModel(

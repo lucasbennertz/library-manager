@@ -93,4 +93,16 @@ class DB {
       return BookModel.fromMap(maps[i]);
     });
   }
+
+  Future<void> createBook(String bookTitle, String bookWriter, int? bookGender,
+      int? bookDisponibility) async {
+    final Database db = await database;
+    await db.insert('livros', {
+      'tituloLivros': bookTitle,
+      'autorLivros': bookWriter,
+      'generoLivros': bookGender,
+      'disponibilidadeLivros': bookDisponibility,
+    });
+    print("Livro cadastrado com sucesso!");
+  }
 }
