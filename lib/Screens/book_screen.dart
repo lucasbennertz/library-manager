@@ -65,9 +65,29 @@ class _BookScreenState extends State<BookScreen> {
                 Text("Autor: ${livro.writer}"),
                 Text(
                     "Disponibilidade: ${livro.avaliability == 0 ? "Disponível" : "Indisponivel"}"),
+                Text("Genero: ${identifyGender(livro.gender)}")
               ]);
         }),
       ),
     );
+  }
+
+  String? identifyGender(int genderId) {
+    switch (genderId) {
+      case 1:
+        return "ação";
+      case 2:
+        return "suspense";
+      case 3:
+        return "Romance";
+      case 4:
+        return "Crônica";
+      case 5:
+        return "Reportagem";
+      case 6:
+        return "Comédia";
+      default:
+        return "n sei oq aconteceu";
+    }
   }
 }
