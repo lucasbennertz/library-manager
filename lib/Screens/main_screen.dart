@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reserva_livros/Screens/book_screen.dart';
 import 'package:reserva_livros/Screens/book_sign_up_screen.dart';
 import 'package:reserva_livros/Screens/student_sign_up_screen.dart';
 
@@ -62,6 +63,18 @@ class MainScreen extends StatelessWidget {
                 },
                 child: const Text(
                   "Ir para cadastro de Livros",
+                  style: TextStyle(color: Colors.white),
+                )),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => BookScreen()),
+                      (Route<dynamic> route) => false);
+                },
+                child: const Text(
+                  "Ir para Biblioteca",
                   style: TextStyle(color: Colors.white),
                 ))
           ],

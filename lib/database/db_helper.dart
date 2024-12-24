@@ -1,3 +1,4 @@
+import 'package:reserva_livros/models/book_model.dart';
 import 'package:reserva_livros/models/gender_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -82,6 +83,14 @@ class DB {
     final List<Map<String, dynamic>> maps = await db.query('generos');
     return List.generate(maps.length, (i) {
       return GenderModel.fromMap(maps[i]);
+    });
+  }
+
+  Future<List<BookModel>> getBooks() async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('livros');
+    return List.generate(maps.length, (i) {
+      return BookModel.fromMap(maps[i]);
     });
   }
 }
