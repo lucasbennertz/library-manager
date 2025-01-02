@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reserva_livros/Screens/main_screen.dart';
 import 'package:reserva_livros/database/db_helper.dart';
 import '../components/decoration_form_input.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class StudentSignUpScreen extends StatefulWidget {
   StudentSignUpScreen({super.key});
@@ -128,6 +129,13 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
       int numberStudent = int.parse(numberController.text);
       DB.instance.createStudent(
           nameController.text, numberStudent, emailController.text);
+      Fluttertoast.showToast(
+          msg: "Livro cadsatrado com sucesso!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16);
     } else {
       print("Form Inválido");
     }

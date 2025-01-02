@@ -57,16 +57,25 @@ class _BookScreenState extends State<BookScreen> {
       body: Column(
         children: List.generate(livros.length, (index) {
           BookModel livro = livros[index];
-          return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text("Titulo: ${livro.title}"),
-                Text("Autor: ${livro.writer}"),
-                Text(
-                    "Disponibilidade: ${livro.avaliability == 0 ? "Disponível" : "Indisponivel"}"),
-                Text("Genero: ${identifyGender(livro.gender)}")
-              ]);
+          return Container(
+            color: Colors.black12,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text("Titulo: ${livro.title}",
+                        style: const TextStyle(
+                          fontSize: 20,
+                        )),
+                    Text("Autor: ${livro.writer}"),
+                    Text(
+                        "Disponibilidade: ${livro.avaliability == 0 ? "Disponível" : "Indisponivel"}"),
+                    Text("Genero: ${identifyGender(livro.gender)}"),
+                  ]),
+            ),
+          );
         }),
       ),
     );
